@@ -1,0 +1,12 @@
+const $=s=>document.querySelector(s);let compressedPhoto='';
+const DEFAULT='안녕하세요. 계명태권도 관장 전성권입니다. 평소 수업과 교육에 대해 꼭 말씀드리고 싶었던 이야기를 이 작은 공간에 담았습니다.';
+function encodeCard(data){const bytes=new TextEncoder().encode(JSON.stringify(data));let binary='';bytes.forEach(b=>binary+=String.fromCharCode(b));return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+function updatePreview(){const name=$('#studentName').value.trim()||'수련생';const honor=$('#honor').value;$('#previewTo').textContent=`${name} ${honor}께`;$('#previewTitle').textContent=`${name}의 성장 이야기`;$('#previewMessage').textContent=$('#message').value.trim()||DEFAULT}
+async function compressImage(file){const bitmap=await createImageBitmap(file);const size=160;const scale=Math.min(size/bitmap.width,size/bitmap.height);const w=Math.round(bitmap.width*scale),h=Math.round(bitmap.height*scale);const canvas=document.createElement('canvas');canvas.width=size;canvas.height=size;const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,size,size);ctx.drawImage(bitmap,(size-w)/2,(size-h)/2,w,h);bitmap.close();return canvas.toDataURL('image/jpeg',.62)}
+$('#photo').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;compressedPhoto=await compressImage(file);$('#previewPhoto').src=compressedPhoto;$('#previewPhoto').hidden=false});
+['input','change'].forEach(type=>$('#cardForm').addEventListener(type,updatePreview));
+$('#cardForm').addEventListener('submit',e=>{e.preventDefault();const data={name:$('#studentName').value.trim(),honor:$('#honor').value,message:$('#message').value.trim(),photo:compressedPhoto};const url=`${location.origin}${location.pathname.replace(/center\.html$/,'index.html')}?card=${encodeCard(data)}`;$('#resultUrl').value=url;$('#openButton').href=url;$('#result').hidden=false;$('#result').scrollIntoView({behavior:'smooth'})});
+$('#copyButton').addEventListener('click',async()=>{await navigator.clipboard.writeText($('#resultUrl').value);$('#copyStatus').textContent='링크를 복사했습니다. 카카오톡에 붙여 넣어 보내세요.'});
+$('#copyIntro').addEventListener('click',async()=>{const url=`${location.origin}${location.pathname.replace(/center\.html$/,'index.html')}?mode=intro`;await navigator.clipboard.writeText(url);alert('소개용 링크를 복사했습니다.')});
+$('#resetButton').addEventListener('click',()=>{if(!confirm('입력한 내용을 모두 지우고 새로 작성할까요?'))return;$('#cardForm').reset();compressedPhoto='';$('#previewPhoto').hidden=true;$('#result').hidden=true;updatePreview()});
+updatePreview();
