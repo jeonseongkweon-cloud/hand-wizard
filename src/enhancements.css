@@ -73,36 +73,57 @@
 .student-photo img { width: 142px; height: 142px; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 10px 26px rgba(9, 47, 97, 0.22); }
 .student-photo figcaption { margin-top: 8px; color: var(--navy); font-size: 13px; font-weight: 900; }
 
-/* 모바일 한글은 글자 중간이 아니라 어절 단위로 자연스럽게 줄바꿈한다. */
-@media (max-width: 640px) {
+/* 모바일 한글 타이포그래피 최소 보정: 기능/레이아웃은 변경하지 않음 */
+@media (max-width: 760px) {
   main h1,
   main h2,
   main h3,
   main p,
+  main li,
   main figcaption,
+  main blockquote,
   main summary,
-  main article,
+  .lead,
+  .section-intro,
   .experience-note,
-  .dialogue-grid {
-    word-break: keep-all;
-    overflow-wrap: normal;
+  .dialogue-grid,
+  .director-note,
+  .contact-list {
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    line-break: strict;
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 10.2vw, 3rem);
-    line-height: 1.14;
+    font-size: clamp(2rem, 8.8vw, 2.65rem);
+    line-height: 1.16;
     letter-spacing: -0.045em;
   }
 
-  section h2 {
-    font-size: clamp(1.85rem, 8.6vw, 2.65rem);
-    line-height: 1.2;
+  main section h2 {
+    font-size: clamp(1.72rem, 7.4vw, 2.25rem);
+    line-height: 1.24;
     letter-spacing: -0.035em;
+  }
+
+  .director-note h2 {
+    font-size: clamp(1.42rem, 6.3vw, 1.7rem);
+    line-height: 1.3;
   }
 
   .lead,
   .section-intro,
-  section > p {
-    line-height: 1.75;
+  main section > p,
+  blockquote {
+    line-height: 1.72;
+  }
+
+  .primary,
+  .secondary,
+  .wide-link,
+  .magic,
+  .quick-nav a {
+    word-break: keep-all;
+    white-space: nowrap;
   }
 }
