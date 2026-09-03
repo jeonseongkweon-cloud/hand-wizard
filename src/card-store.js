@@ -4,7 +4,7 @@
   const key=CONFIG.supabaseAnonKey||'';
   const configured=()=>/^https:\/\/.+\.supabase\.co$/i.test(url)&&key.length>20;
   const headers=()=>({'apikey':key,'Authorization':`Bearer ${key}`,'Content-Type':'application/json'});
-  const randomId=(length=12)=>{const alphabet='23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';const bytes=new Uint8Array(length);crypto.getRandomValues(bytes);return [...bytes].map(b=>alphabet[b%alphabet.length]).join('')};
+  const randomId=(length=10)=>{const alphabet='23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';const bytes=new Uint8Array(length);crypto.getRandomValues(bytes);return [...bytes].map(b=>alphabet[b%alphabet.length]).join('')};
   async function save(card){
     if(!configured())throw new Error('STORAGE_NOT_CONFIGURED');
     for(let attempt=0;attempt<4;attempt++){
