@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#092f61">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>손안의 마법사 제작센터 | 계명태권도</title>
+  <link rel="stylesheet" href="./center.css">
+</head>
+<body>
+  <header><div><b>계명태권도</b><h1>손안의 마법사 제작센터</h1><p>아이 정보만 입력하면 학부모용 개인 링크가 완성됩니다.</p></div><span>Version 1.4.1</span></header>
+  <main>
+    <section class="editor">
+      <h2>개인 안내 만들기</h2>
+      <form id="cardForm">
+        <label>수련생 이름<input id="studentName" required maxlength="20" placeholder="예: 김민규"></label>
+        <label>받는 분 호칭<select id="honor"><option>어머님</option><option>아버님</option><option>부모님</option><option>보호자님</option></select></label>
+        <label>수련생 사진<input id="photo" type="file" accept="image/*"><small>사진은 안전하게 작게 압축한 뒤 저장되며, 공유 링크에는 사진 데이터가 들어가지 않습니다.</small></label>
+        <label>관장님 개인 메시지<textarea id="message" maxlength="240" rows="5" placeholder="평소 꼭 전하고 싶었던 이야기를 입력하세요."></textarea></label>
+        <div class="buttons"><button class="primary" type="submit">✨ 개인 링크 만들기</button><button type="button" id="resetButton">새로 작성</button></div>
+      </form>
+    </section>
+    <aside class="preview">
+      <h2>모바일 미리보기</h2>
+      <div class="phone"><div class="preview-card"><span id="previewTo">수련생 어머님께</span><img id="previewPhoto" hidden alt="수련생 사진 미리보기"><h3 id="previewTitle">우리 아이의 성장 이야기</h3><p id="previewMessage">메시지를 작성하면 이곳에 표시됩니다.</p><b>FROM 전성권 관장</b></div></div>
+    </aside>
+    <section class="result" id="result" hidden>
+      <h2>개인 링크가 완성되었습니다</h2><input id="resultUrl" readonly><div class="buttons"><button class="primary" id="copyButton">📋 링크 복사</button><a id="openButton" target="_blank" rel="noopener">📱 모바일 화면 확인</a></div><p id="copyStatus" role="status"></p>
+    </section>
+    <section class="intro-link"><h2>개인정보 없는 소개용 링크</h2><p>이 링크는 누구에게나 전달할 수 있습니다.</p><div class="buttons"><button id="copyIntro">❤️ 소개 링크 복사</button><a href="./index.html?mode=intro" target="_blank" rel="noopener">소개 화면 확인</a></div></section>
+  </main>
+  <script src="./config.js"></script>
+  <script src="./card-store.js"></script>
+  <script src="./center.js"></script>
+</body>
+</html>
