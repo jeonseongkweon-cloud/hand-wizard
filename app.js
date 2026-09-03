@@ -16,8 +16,37 @@ function openDaily(){const daily=$('#daily');daily.open=true;requestAnimationFra
 $$('a[href="#daily"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openDaily()}));
 $('[data-close-daily]').addEventListener('click',()=>{const daily=$('#daily');daily.open=false;$('#praise').scrollIntoView({behavior:'smooth',block:'start'})});
 $$('[data-kakao]').forEach(b=>b.addEventListener('click',()=>window.open('https://open.kakao.com/o/gF8p81hi','_blank','noopener')));
-const introUrl=()=>`${location.origin}${location.pathname}?mode=intro`;
-$$('[data-a02]').forEach(b=>b.addEventListener('click',async()=>{const url=introUrl();if(b.textContent.includes('카카오톡')&&navigator.share){try{await navigator.share({title:'계명태권도를 소개합니다',text:'계명태권도의 특별한 교육 이야기를 확인해 보세요.',url});return}catch{}}location.href=url}));
+const publicShareUrl=()=>`${location.origin}${location.pathname}`;
+const SHARE_TEXT='아이들의 작은 노력과 성장을 함께 발견하는 계명태권도의 교육 이야기를 소개합니다.';
+async function copyPublicShareLink(){
+  const url=publicShareUrl();
+  try{
+    await navigator.clipboard.writeText(`${SHARE_TEXT}\n${url}`);
+  }catch{
+    const area=document.createElement('textarea');
+    area.value=`${SHARE_TEXT}\n${url}`;
+    area.setAttribute('readonly','');
+    area.style.position='fixed';area.style.opacity='0';
+    document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();
+  }
+  toast('소개 문구와 링크를 복사했습니다. 카카오톡에 붙여 넣어 보내세요.');
+}
+$$('[data-a02]').forEach(b=>b.addEventListener('click',async()=>{
+  const url=publicShareUrl();
+  if(b.textContent.includes('카카오톡')){
+    if(navigator.share){
+      try{
+        await navigator.share({title:'계명태권도를 소개합니다',text:SHARE_TEXT,url});
+        return;
+      }catch(err){
+        if(err?.name==='AbortError')return;
+      }
+    }
+    await copyPublicShareLink();
+    return;
+  }
+  await copyPublicShareLink();
+}));
 $$('[data-tour]').forEach(b=>b.addEventListener('click',()=>$('#education').scrollIntoView({behavior:'smooth'})));
 const commands=[[/칭찬|별/,'#praise'],[/클래스|class/i,'#class-system'],[/공동|함께 성장/,'#growth'],[/스파크|spark/i,'#spark'],[/수업|사진|모습/,'#daily'],[/행사|소식|심사/,'#events'],[/관장.*소개|전성권/,'#director'],[/전체.*메뉴/,'menu'],[/홈|처음/,'#home'],[/소개|친구/,'#introduce'],[/밴드|band/i,'band'],[/카카오/,'kakao'],[/전화/,'phone']];
 function runCommand(text){const hit=commands.find(([r])=>r.test(text));if(!hit){toast('잘 듣지 못했어요. 전체메뉴에서 찾아보세요.');return}const action=hit[1];if(action==='#daily'){openDaily();toast(`“${text}” 수업 모습을 펼칩니다.`)}else if(action.startsWith('#')){$(action).scrollIntoView({behavior:'smooth'});toast(`“${text}” 안내로 이동합니다.`)}else if(action==='menu')openMenu();else if(action==='phone'){if(confirm('전성권 관장님께 전화할까요?'))location.href='tel:01044772772'}else if(action==='band')window.open('https://band.us/n/a8a7b9Xahdgb8','_blank','noopener');else window.open('https://open.kakao.com/o/gF8p81hi','_blank','noopener')}
