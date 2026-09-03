@@ -1,0 +1,6 @@
+const $=s=>document.querySelector(s);
+const menu=$('#menu');$('#menuBtn').addEventListener('click',()=>menu.hidden=!menu.hidden);menu.addEventListener('click',()=>menu.hidden=true);
+async function personal(){const id=new URLSearchParams(location.search).get('m');if(!id)return;try{const d=await window.HandWizardStore?.load(id);if(!d?.name)return;$('#recipient').textContent='ACTS MISSION ALLIANCE · 개인 손편지';$('#personalBox').hidden=false;$('#personalTo').textContent=`${d.name} ${d.honor||'님'}께`;$('#personalMessage').textContent=d.message||'';if(d.photo){$('#personalPhoto').src=d.photo}else{$('#personalPhoto').hidden=true}document.title=`${d.name}님께 전하는 ACTS 이야기 | 손안의 마법사`}catch(e){console.error(e)}}
+function shareText(){return '왜 무도를 하던 사람이 선교연합을 만들었을까요?\nACTS MISSION ALLIANCE의 이야기를 전합니다.'}
+$('#copyBtn').addEventListener('click',async()=>{await navigator.clipboard.writeText(location.href);$('#shareStatus').textContent='링크를 복사했습니다.'});
+$('#shareBtn').addEventListener('click',async()=>{try{if(navigator.share){await navigator.share({title:document.title,text:shareText(),url:location.href})}else{await navigator.clipboard.writeText(`${shareText()}\n${location.href}`);$('#shareStatus').textContent='소개 문구와 링크를 복사했습니다. 카카오톡에 붙여 넣어 주세요.'}}catch(e){if(e.name!=='AbortError')console.error(e)}});personal();
