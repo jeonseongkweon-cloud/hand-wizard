@@ -106,3 +106,55 @@
     line-height: 1.75;
   }
 }
+
+/* v1.4.2 — GitHub Pages 모바일 한글 배열 정돈 (CSS only) */
+@media (max-width: 640px) {
+  main,
+  main section,
+  main h1,
+  main h2,
+  main h3,
+  main p,
+  main li,
+  main figcaption,
+  main summary,
+  main blockquote,
+  .lead,
+  .section-intro,
+  .experience-note,
+  .dialogue-grid,
+  .dialogue-grid p,
+  .reason-list p,
+  .system-card,
+  .class-tools article,
+  .arrival-journey article {
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.82rem, 8.6vw, 2.45rem) !important;
+    line-height: 1.18 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  main section h2 {
+    font-size: clamp(1.62rem, 7.3vw, 2.05rem) !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  main section h3,
+  .daily-reveal-content h3,
+  .subheading {
+    line-height: 1.35 !important;
+  }
+
+  .lead,
+  .section-intro,
+  main section > p,
+  .experience-note p,
+  blockquote {
+    line-height: 1.72 !important;
+  }
+}
