@@ -9,4 +9,9 @@ await cp('src', 'dist', { recursive: true });
 await mkdir('dist/assets/spark', { recursive: true });
 await cp('assets/spark', 'dist/assets/spark', { recursive: true });
 
-console.log('A01 static build complete');
+// ACTS NEWSLETTER is distributed through the same deployed site as A01,
+// while remaining isolated under /acts so existing academy pages are untouched.
+await mkdir('dist/acts', { recursive: true });
+await cp('acts', 'dist/acts', { recursive: true });
+
+console.log('A01 + ACTS static build complete');
