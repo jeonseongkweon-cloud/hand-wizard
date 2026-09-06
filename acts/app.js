@@ -1,10 +1,15 @@
 const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
 const menu=$('#menu');
 const shade=$('#menuShade');
 const menuBtn=$('#menuBtn');
 const menuClose=$('#menuClose');
+const prayBtn=$('#prayBtn');
+const prayThanks=$('#prayThanks');
+const PRAY_KEY='acts-newsletter-01-prayed';
 
 function setMenu(open){
+  if(!menu||!shade||!menuBtn)return;
   menu.hidden=!open;
   shade.hidden=!open;
   menuBtn.setAttribute('aria-expanded',String(open));
@@ -14,7 +19,6 @@ menuBtn?.addEventListener('click',()=>setMenu(menu.hidden));
 menuClose?.addEventListener('click',()=>setMenu(false));
 shade?.addEventListener('click',()=>setMenu(false));
 menu?.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});
-
 document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
 
 async function personal(){
@@ -32,14 +36,19 @@ async function personal(){
   }catch(e){console.error(e)}
 }
 
-const prayBtn=$('#prayBtn');
-const prayThanks=$('#prayThanks');
-prayBtn?.addEventListener('click',()=>{
+function showPrayerThanks(scroll=false){
+  if(!prayBtn||!prayThanks)return;
   prayBtn.classList.add('done');
   prayBtn.textContent='🙏 함께 기도했습니다';
   prayBtn.disabled=true;
   prayThanks.hidden=false;
-  prayThanks.scrollIntoView({behavior:'smooth',block:'center'});
+  if(scroll)prayThanks.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+try{if(localStorage.getItem(PRAY_KEY)==='1')showPrayerThanks(false)}catch(e){}
+prayBtn?.addEventListener('click',()=>{
+  try{localStorage.setItem(PRAY_KEY,'1')}catch(e){}
+  showPrayerThanks(true);
 });
 
 function shareText(){
@@ -60,6 +69,7 @@ $('#shareBtn')?.addEventListener('click',async()=>{
   try{
     if(navigator.share){
       await navigator.share({title:document.title,text:shareText(),url:location.href});
+      $('#shareStatus').textContent='공유 창을 열었습니다.';
     }else{
       await navigator.clipboard.writeText(`${shareText()}\n${location.href}`);
       $('#shareStatus').textContent='소개 문구와 링크를 복사했습니다. 카카오톡에 붙여 넣어 주세요.';
@@ -68,5 +78,32 @@ $('#shareBtn')?.addEventListener('click',async()=>{
     if(e.name!=='AbortError')console.error(e);
   }
 });
+
+const revealTargets=$$('main > section');
+if('IntersectionObserver' in window){
+  const revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('inview');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12});
+  revealTargets.forEach(el=>{el.classList.add('reveal');revealObserver.observe(el)});
+}else revealTargets.forEach(el=>el.classList.add('inview'));
+
+const quickLinks=$$('.quick a');
+const sectionMap=new Map(quickLinks.map(a=>[a.getAttribute('href')?.slice(1),a]));
+if('IntersectionObserver' in window){
+  const navObserver=new IntersectionObserver(entries=>{
+    const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if(!visible)return;
+    quickLinks.forEach(a=>a.classList.remove('active'));
+    const direct=sectionMap.get(visible.target.id);
+    if(direct)direct.classList.add('active');
+    else if(['story3'].includes(visible.target.id))sectionMap.get('story1')?.classList.add('active');
+  },{rootMargin:'-120px 0px -55% 0px',threshold:[.05,.2,.5]});
+  revealTargets.forEach(el=>navObserver.observe(el));
+}
 
 personal();
