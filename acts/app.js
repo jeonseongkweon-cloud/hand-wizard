@@ -56,8 +56,8 @@ function shareText(){
 }
 
 function shareUrl(){
-  const url=new URL('../',location.href);
-  url.searchParams.set('mode','acts01');
+  const url=new URL('./',location.href);
+  url.search='';
   const id=new URLSearchParams(location.search).get('m');
   if(id)url.searchParams.set('m',id);
   return url.href;
