@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#10283f">
+  <title>WEB LETTER DESK | 전성권 웹 편지 관리실</title>
+  <link rel="stylesheet" href="./styles.css?v=1.0.0">
+</head>
+<body>
+  <header class="desk-header">
+    <div>
+      <p class="eyebrow">HAND WIZARD · PRIVATE WORKSPACE</p>
+      <h1>WEB LETTER DESK</h1>
+      <p class="subtitle">웹 편지 · 손편지 · 뉴스레터를 한곳에서 보고, 열고, 수정하고, 바로 공유하는 개인 관리실</p>
+    </div>
+    <div class="header-actions">
+      <a class="primary" href="../center.html">＋ 개인 손편지 만들기</a>
+      <a href="../../WEB-LETTER-MASTER-INDEX.md" target="_blank" rel="noopener">보관 인덱스</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-label="웹 편지 현황">
+      <article><strong id="totalCount">0</strong><span>전체 작품</span></article>
+      <article><strong id="liveCount">0</strong><span>운영/사용 가능</span></article>
+      <article><strong id="archiveCount">0</strong><span>복원·보관본</span></article>
+      <article><strong id="orgCount">0</strong><span>단체/분류</span></article>
+    </section>
+
+    <section class="toolbar">
+      <label class="search"><span>검색</span><input id="searchInput" type="search" placeholder="예: SPARK, ACTS, 학부모, 드론, 손편지"></label>
+      <div class="filters" id="filters" aria-label="분류 필터">
+        <button type="button" class="active" data-filter="all">전체</button>
+        <button type="button" data-filter="KMT">계명태권도</button>
+        <button type="button" data-filter="SPARK">GLOBAL SPARK</button>
+        <button type="button" data-filter="ACTS">ACTS</button>
+        <button type="button" data-filter="IDP">드론순찰대</button>
+        <button type="button" data-filter="OTHER">기타</button>
+      </div>
+    </section>
+
+    <section class="section-head">
+      <div><p class="eyebrow">MY LIBRARY</p><h2>웹 편지 목록</h2></div>
+      <p id="resultText" aria-live="polite"></p>
+    </section>
+    <section class="letter-grid" id="letterGrid"></section>
+
+    <section class="workflow">
+      <div><p class="eyebrow">WORKFLOW</p><h2>앞으로 만드는 방식</h2></div>
+      <ol>
+        <li><b>새 작품</b><span>기존 편지를 덮어쓰지 않고 W01 → W02 → W03으로 추가</span></li>
+        <li><b>수정</b><span>큰 개편은 v2.0, 작은 수정은 v1.1로 새 버전 보존</span></li>
+        <li><b>공유</b><span>카카오톡에 보낼 주소를 이 화면에서 바로 복사</span></li>
+        <li><b>복원</b><span>옛 작품은 archive/web-letters에 원본 그대로 보관</span></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>WEB LETTER DESK v1.0.0 · 개인 운영용 관리 화면</footer>
+  <script src="./app.js?v=1.0.0"></script>
+</body>
+</html>
