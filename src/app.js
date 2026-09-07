@@ -1,3 +1,7 @@
+const __entryParams=new URLSearchParams(location.search);
+const __isPlainDesktop=window.matchMedia('(min-width: 1024px)').matches&&!__entryParams.has('m')&&!__entryParams.has('mode')&&!__entryParams.has('card');
+if(__isPlainDesktop){location.replace(new URL('./desk/',location.href).href);}
+
 const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
 const DEFAULT_MESSAGE='안녕하세요. 계명태권도 관장 전성권입니다. 평소 수업과 교육에 대해 꼭 말씀드리고 싶었던 이야기를 이 작은 공간에 담았습니다.';
 function decodeCard(value){try{const normalized=value.replace(/-/g,'+').replace(/_/g,'/');const bytes=Uint8Array.from(atob(normalized),c=>c.charCodeAt(0));return JSON.parse(new TextDecoder().decode(bytes))}catch{return null}}
