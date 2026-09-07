@@ -73,6 +73,13 @@
 .student-photo img { width: 142px; height: 142px; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 10px 26px rgba(9, 47, 97, 0.22); }
 .student-photo figcaption { margin-top: 8px; color: var(--navy); font-size: 13px; font-weight: 900; }
 
+/* PC의 좁은 본문 폭에서도 '있으신가요?' 같은 한글 어절이 중간에서 끊기지 않도록 보정 */
+.introduce h2 {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+}
+
 /* 모바일 한글 타이포그래피 최소 보정: 기능/레이아웃은 변경하지 않음 */
 @media (max-width: 760px) {
   main h1,
