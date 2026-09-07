@@ -11,6 +11,18 @@
 - 옛 명칭 '손안의 마법사' 자료도 모두 '웹 편지' 범주로 보존한다.
 - 기사 OG 미리보기/리다이렉트 페이지는 독립 웹 편지와 구분한다.
 
+## 현재 운영 중
+
+### SPARK-W02 — GLOBAL SPARK 기관장 초청 웹 손편지
+- 원본 저장소: ipma1822-png/global-spark
+- 원본 경로: web-letter/spark-w02/
+- 공개 주소: https://ipma1822-png.github.io/global-spark/web-letter/spark-w02/
+- 대상: 원장·관장·기관 운영자
+- 목적: GLOBAL SPARK와 성장기지를 소개하고 기관 참여로 연결하는 공식 초청 웹 손편지
+- 카카오톡 링크 미리보기 적용
+- 상태: 운영 중 · 공개 주소 고정 유지
+- 수정 위치: https://github.com/ipma1822-png/global-spark/edit/main/web-letter/spark-w02/index.html
+
 ## 복원 완료
 
 ### KMT-W01 — 계명태권도 학부모 종합 웹 편지
@@ -86,6 +98,8 @@
 - '계명태권도 개인 웹 편지 보여줘'
 - '계명태권도 공통 웹 편지 보여줘'
 - '스파크 옛날 v1.0 웹 편지 불러줘'
+- 'GLOBAL SPARK 기관장 초청 웹 손편지 보여줘'
+- 'SPARK-W02 불러줘'
 - '스파크 학부모 P01 불러줘'
 - 'ACTS 웹 편지 불러줘'
 - '드론 웹 편지 자료 찾아줘'
