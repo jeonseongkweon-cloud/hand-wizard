@@ -1,0 +1,4 @@
+Original file: src/story/index.html
+Original blob: f32025097270e474888f5cb9b281b6f52425d2c5
+Original commit: 4b87adc70107c57a3ce56b969e8e4be37de37c29
+Purpose: common story 01 short route (?mode=story01)
