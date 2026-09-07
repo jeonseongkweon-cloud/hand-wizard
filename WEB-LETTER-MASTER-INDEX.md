@@ -9,55 +9,85 @@
 - 공통편과 개인 맞춤편은 별도 항목으로 보존한다.
 - 삭제/교체 전 Git 커밋 이력에서 이전 버전을 확인한다.
 - 옛 명칭 '손안의 마법사' 자료도 모두 '웹 편지' 범주로 보존한다.
+- 기사 OG 미리보기/리다이렉트 페이지는 독립 웹 편지와 구분한다.
 
-## 확인된 웹 편지/관련 자산
+## 복원 완료
 
 ### KMT-W01 — 계명태권도 학부모 종합 웹 편지
 - 저장소: jeonseongkweon-cloud/hand-wizard
-- 상태: 운영 구조 확인
+- 개인편 아카이브: archive/web-letters/KMT-W01-PERSONAL/
+- 공통편 아카이브: archive/web-letters/KMT-W01-COMMON/
 - 공통편: mode=story01 방식
 - 개인편: m=10자리ID 방식
-- 개인화 요소: 원생 이름/사진 등
-- 관련 경로: src/, src/story/, center/, Supabase 연동 파일
-- 비고: 과거 버전과 현재 버전의 차이는 커밋 이력 추가 조사 필요
+- 개인화 요소: 원생 이름/사진/호칭/개인 메시지
+- 상태: 실제 과거 원본 blob으로 복원 완료
 
 ### KMT-W02 — 계명태권도 × GLOBAL SPARK 학부모 웹 편지
 - 저장소: jeonseongkweon-cloud/hand-wizard
-- 상태: 원본 자산/전용 페이지 확인
-- 관련 경로: src/spark/p01/index.html, src/spark/p01/app.js, src/spark/p01/styles.css
-- 관련 이미지: assets/spark/SPARK_BANNER_01.webp ~ SPARK_BANNER_40.webp 계열
-- 목적: 계명태권도 학부모에게 GLOBAL SPARK 설명
-- 복원: 과거 개인화/공통편 연결 구조를 커밋 이력에서 추가 조사
+- 아카이브: archive/web-letters/KMT-W02-SPARK-P01/
+- 원본 기준 커밋: 8baa8f73287df65e9b17dcfa0cbc5b3b1445a438
+- 상태: 실제 원본 HTML/JS/CSS 복원 완료
 
-### SPARK-W01 — GLOBAL SPARK 공용 소개 웹 편지
-- 저장소: ipma1822-png/global-spark
-- 알려진 페이지: spark-magic.html
-- 상태: 현행 페이지와 과거 버전 비교 조사 필요
-- 목적: 불특정 다수에게 GLOBAL SPARK 소개 및 첫 참여 유도
+### ACTS-W01 — ACTS 선교연합 웹 편지
+- 저장소: jeonseongkweon-cloud/hand-wizard
+- 아카이브: archive/web-letters/ACTS-W01/
+- 원본 기준 커밋: fc88cee9a6f881dfabcd6890af9499890249e7ef
+- 상태: ACTS NEWSLETTER 01 v1.3.0 실제 원본 복원 완료
 
-### ACTS-W01 — ACTS 선교연합 소개 웹 편지
-- 관련 저장소: jeonseongkweon-cloud/hand-wizard, jeonseongkweon-cloud/acts-mission
-- hand-wizard 내 acts/ 독립 구조 및 전용 이미지 자산 확인
-- 상태: 실제 배포 주소 및 과거 작품 버전 추가 조사 필요
+### SPARK-W01-v1.0 — GLOBAL SPARK 공용 웹 편지
+- 원본 저장소: ipma1822-png/global-spark
+- 원본 경로: spark-magic.html
+- v2.0 업그레이드 직전 기준: 11ebe367b4394676b30242955bef7b39989271b1
+- 원본 blob: 7d94a952592dc54d054d58f57a83030ec465a8f7
+- 아카이브: archive/web-letters/SPARK-W01-v1.0/spark-magic.html
+- 핵심: 첫 SPARK 체험 → 5개 불꽃 → 행동 → 완료 → 공유/참여
+- 상태: 과거 공용 손안의 마법사 v1.0 완전 복원
 
-### IDP-W01 — 국제드론순찰대 웹 편지
-- 관련 저장소: ipma1822-png/IDP
-- 상태: 본 사이트 내 카카오 공유용 이미지 자산 확인
-- 확인 자산: assets/images/share/idp-main-kakao-1200x630.jpg, idp-simple-join-kakao-1200x630.jpg
-- 복원: 웹 편지 자체 페이지/과거 커밋 추가 조사 필요
+## 부분 확인 / 후보 보관
 
-## 다음 조사 대상
-1. hand-wizard 커밋 이력에서 KMT-W01 개인편/공통편의 완성 시점 찾기
-2. KMT-W02 SPARK 학부모 웹 편지의 원래 화면과 개인화 구조 복원 후보 찾기
-3. global-spark의 spark-magic.html 변경 이력 비교
-4. acts-mission 및 hand-wizard/acts의 배포본/이전 버전 조사
-5. IDP 커밋 이력에서 웹 편지·카카오 공유·소개 페이지 후보 조사
-6. 이후 태권검도/IPMA/Global News24/IPMA Publishing 웹 편지 후보까지 확대
+### IDP-W01 — 국제드론순찰대
+- 원본 저장소: ipma1822-png/IDP
+- 아카이브 메모: archive/web-letters/IDP-W01/README.md
+- 확인 자산: idp-main-kakao-1200x630.jpg, idp-simple-join-kakao-1200x630.jpg 등
+- GN24 갱신 기사 공유 페이지도 확인
+- 상태: 공유 자산 확정, 독립 웹 편지 HTML은 미확정
+
+### WTKF-W01 — 태권검도
+- 원본 저장소: ipma1822-png/taekwonkumdo
+- 아카이브 메모: archive/web-letters/WTKF-W01/README.md
+- 창시자/수상/심벌/유니폼/소개 자산 확인
+- 상태: 독립 웹 편지 원본 미확정
+
+### IPMA-W01 — IPMA
+- 원본 저장소: ipma1822-png/ipma-official
+- 아카이브 메모: archive/web-letters/IPMA-W01/README.md
+- 공식 소개/조직 콘텐츠 및 GN24 갱신 기사 공유 페이지 확인
+- 상태: 독립 웹 편지 원본 미확정
+
+### GN24-W01 — Global News24
+- 원본 저장소: ipma1822-png/gn24
+- 아카이브 메모: archive/web-letters/GN24-W01/README.md
+- build-og-share-pages workflow, generate_share_pages.py, 다수 share/ 기사 페이지 확인
+- 상태: 기사 공유 시스템은 확정. 독립 웹 편지는 미확정
+
+### PUBLISHING-W01 — IPMA Publishing
+- 원본 저장소: ipma1822-png/ipma-publishing
+- 아카이브 메모: archive/web-letters/PUBLISHING-W01/README.md
+- SHARE_PREVIEW_GUIDE.md, data/share-pages.json, 출판물별 share 페이지 확인
+- 상태: 출판정보 공유 시스템 확정. 독립 웹 편지는 미확정
+
+## 조사 보고서
+- WEB-LETTER-RECOVERY-REPORT-2026-09-07.md
+- archive/web-letters/EXPANSION-RECOVERY-2026-09-07.md
+- archive/web-letters/RESTORE-STATUS.md
 
 ## 호출 규칙
 앞으로 아래처럼 요청하면 이 인덱스를 기준으로 찾는다.
-- '계명태권도 웹 편지 보여줘'
-- '김민규 개인 웹 편지 찾아줘'
-- '스파크 학부모 웹 편지 불러줘'
-- 'ACTS 웹 편지 주소 줘'
-- '드론 웹 편지 불러줘'
+- '계명태권도 개인 웹 편지 보여줘'
+- '계명태권도 공통 웹 편지 보여줘'
+- '스파크 옛날 v1.0 웹 편지 불러줘'
+- '스파크 학부모 P01 불러줘'
+- 'ACTS 웹 편지 불러줘'
+- '드론 웹 편지 자료 찾아줘'
+- '태권검도 웹 편지 자료 찾아줘'
+- 'GN24 공유 페이지와 웹 편지 구분해서 보여줘'
