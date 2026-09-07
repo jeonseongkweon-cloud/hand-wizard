@@ -14,4 +14,10 @@ await cp('assets/spark', 'dist/assets/spark', { recursive: true });
 await mkdir('dist/acts', { recursive: true });
 await cp('acts', 'dist/acts', { recursive: true });
 
-console.log('A01 + ACTS static build complete');
+// WEB LETTER DESK must be able to open restored historical letters directly.
+// Archive sources remain read-only originals; the build only copies them into dist.
+await mkdir('dist/archive/web-letters', { recursive: true });
+await cp('archive/web-letters', 'dist/archive/web-letters', { recursive: true });
+await cp('WEB-LETTER-MASTER-INDEX.md', 'dist/WEB-LETTER-MASTER-INDEX.md');
+
+console.log('A01 + ACTS + WEB LETTER DESK static build complete');
