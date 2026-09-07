@@ -1,6 +1,21 @@
 const __entryParams=new URLSearchParams(location.search);
-const __isPlainDesktop=window.matchMedia('(min-width: 1024px)').matches&&!__entryParams.has('m')&&!__entryParams.has('mode')&&!__entryParams.has('card');
+const __isPlainDesktop=window.matchMedia('(min-width: 1024px)').matches&&!__entryParams.has('m')&&!__entryParams.has('mode')&&!__entryParams.has('card')&&!__entryParams.has('admin');
 if(__isPlainDesktop){location.replace(new URL('./desk/',location.href).href);}
+
+const __ADMIN_BUILD='A01 v1.4.1 · 2026-09-07';
+if(__entryParams.get('admin')==='1'){
+  const badge=document.createElement('div');
+  badge.textContent=__ADMIN_BUILD;
+  badge.setAttribute('aria-label','관리자용 소스 버전');
+  Object.assign(badge.style,{
+    position:'fixed',top:'10px',right:'10px',zIndex:'9999',
+    padding:'7px 10px',borderRadius:'999px',background:'#111827',
+    color:'#fff',fontSize:'12px',fontWeight:'800',lineHeight:'1',
+    boxShadow:'0 4px 14px rgba(0,0,0,.18)',opacity:'.92',
+    pointerEvents:'none'
+  });
+  document.body.appendChild(badge);
+}
 
 const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
 const DEFAULT_MESSAGE='안녕하세요. 계명태권도 관장 전성권입니다. 평소 수업과 교육에 대해 꼭 말씀드리고 싶었던 이야기를 이 작은 공간에 담았습니다.';
