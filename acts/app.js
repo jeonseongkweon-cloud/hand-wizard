@@ -55,9 +55,34 @@ function shareText(){
   return 'ACTS를 위해 함께 기도해 주세요.\n작은 기도 하나가 세계의 선교사에게 닿습니다.';
 }
 
+function shareUrl(){
+  const url=new URL('../',location.href);
+  url.searchParams.set('mode','acts01');
+  const id=new URLSearchParams(location.search).get('m');
+  if(id)url.searchParams.set('m',id);
+  return url.href;
+}
+
+async function copyText(text){
+  if(navigator.clipboard?.writeText){
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const area=document.createElement('textarea');
+  area.value=text;
+  area.setAttribute('readonly','');
+  area.style.position='fixed';
+  area.style.opacity='0';
+  document.body.appendChild(area);
+  area.select();
+  const copied=document.execCommand('copy');
+  area.remove();
+  if(!copied)throw new Error('COPY_FAILED');
+}
+
 $('#copyBtn')?.addEventListener('click',async()=>{
   try{
-    await navigator.clipboard.writeText(location.href);
+    await copyText(shareUrl());
     $('#shareStatus').textContent='링크를 복사했습니다.';
   }catch(e){
     console.error(e);
@@ -68,10 +93,10 @@ $('#copyBtn')?.addEventListener('click',async()=>{
 $('#shareBtn')?.addEventListener('click',async()=>{
   try{
     if(navigator.share){
-      await navigator.share({title:document.title,text:shareText(),url:location.href});
+      await navigator.share({title:document.title,text:shareText(),url:shareUrl()});
       $('#shareStatus').textContent='공유 창을 열었습니다.';
     }else{
-      await navigator.clipboard.writeText(`${shareText()}\n${location.href}`);
+      await copyText(`${shareText()}\n${shareUrl()}`);
       $('#shareStatus').textContent='소개 문구와 링크를 복사했습니다. 카카오톡에 붙여 넣어 주세요.';
     }
   }catch(e){
